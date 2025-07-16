@@ -1,0 +1,152 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* PDFNinja Design System - Professional ninja-themed color palette
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Primary ninja blue palette */
+    --background: 218 25% 97%;
+    --foreground: 219 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 219 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 219 25% 15%;
+
+    /* Ninja blue primary colors */
+    --primary: 219 85% 25%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 219 85% 35%;
+    --primary-dark: 219 85% 15%;
+
+    /* Secondary accent colors */
+    --secondary: 218 25% 94%;
+    --secondary-foreground: 219 25% 15%;
+
+    --muted: 218 25% 94%;
+    --muted-foreground: 219 15% 45%;
+
+    --accent: 219 75% 45%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Status colors */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --success: 142 75% 35%;
+    --success-foreground: 0 0% 98%;
+    
+    --warning: 38 95% 55%;
+    --warning-foreground: 0 0% 98%;
+
+    --border: 218 25% 88%;
+    --input: 218 25% 88%;
+    --ring: 219 85% 35%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients for ninja theme */
+    --gradient-ninja: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-ninja-dark: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
+    
+    /* Shadows with ninja blue glow */
+    --shadow-ninja: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-ninja-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    
+    /* Animations */
+    --transition-ninja: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark ninja theme */
+    --background: 219 25% 8%;
+    --foreground: 218 25% 95%;
+
+    --card: 219 25% 12%;
+    --card-foreground: 218 25% 95%;
+
+    --popover: 219 25% 12%;
+    --popover-foreground: 218 25% 95%;
+
+    /* Dark ninja blue colors */
+    --primary: 219 85% 55%;
+    --primary-foreground: 219 25% 8%;
+    --primary-glow: 219 85% 65%;
+    --primary-dark: 219 85% 25%;
+
+    --secondary: 219 25% 15%;
+    --secondary-foreground: 218 25% 95%;
+
+    --muted: 219 25% 15%;
+    --muted-foreground: 219 15% 60%;
+
+    --accent: 219 75% 55%;
+    --accent-foreground: 219 25% 8%;
+
+    /* Dark status colors */
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --success: 142 75% 45%;
+    --success-foreground: 0 0% 98%;
+    
+    --warning: 38 95% 65%;
+    --warning-foreground: 0 0% 8%;
+
+    --border: 219 25% 20%;
+    --input: 219 25% 20%;
+    --ring: 219 85% 55%;
+
+    /* Dark gradients */
+    --gradient-ninja: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-ninja-dark: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
+    
+    /* Dark shadows with ninja blue glow */
+    --shadow-ninja: 0 10px 30px -10px hsl(var(--primary) / 0.5);
+    --shadow-ninja-glow: 0 0 40px hsl(var(--primary-glow) / 0.6);
+    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.2);
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom utility for subtle background gradient */
+.bg-subtle {
+  background: var(--gradient-subtle);
+}
