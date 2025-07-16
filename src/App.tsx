@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { AnalyticsProvider } from "./components/layout/AnalyticsProvider";
 import Index from "./pages/Index";
 import CompressPage from "./pages/CompressPage";
 import ExtractPage from "./pages/ExtractPage";
@@ -27,6 +28,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <AnalyticsProvider />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/compress" element={<CompressPage />} />
