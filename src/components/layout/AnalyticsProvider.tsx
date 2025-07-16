@@ -32,7 +32,7 @@ const AnalyticsProvider = () => {
     /*
     const searchConsoleMeta = document.createElement('meta');
     searchConsoleMeta.name = 'google-site-verification';
-    searchConsoleMeta.content = 'YOUR_VERIFICATION_CODE';
+    searchConsoleMeta.content = '<meta name="google-site-verification" content="htYpOmW69o8haliEshFBIFVY-ABCGFLZBr99MLqkpPU" />';
     document.head.appendChild(searchConsoleMeta);
     */
 
