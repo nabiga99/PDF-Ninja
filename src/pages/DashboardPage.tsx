@@ -41,6 +41,7 @@ const DashboardPage = () => {
     try {
       const { error } = await supabase.from('profiles').upsert({
         id: user.id,
+        email: user.email,
         full_name: data.fullName,
         phone_number: data.phoneNumber,
         updated_at: new Date().toISOString(),
