@@ -39,7 +39,17 @@ const SignInPage = () => {
       });
 
       if (error) {
-        throw error;
+        if (error.message === 'Email not confirmed') {
+          toast({
+            title: 'Email not verified',
+            description: 'Please check your inbox and click the verification link to activate your account.',
+            variant: 'destructive',
+            duration: 10000,
+          });
+        } else {
+          throw error;
+        }
+        return; // Stop execution if there was an error
       }
 
       navigate('/dashboard');

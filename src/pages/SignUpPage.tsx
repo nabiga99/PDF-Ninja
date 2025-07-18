@@ -51,8 +51,9 @@ const SignUpPage = () => {
       }
 
       toast({
-        title: 'Check your email!',
-        description: 'We have sent a confirmation link to your email address.',
+        title: 'Check your email to complete sign-up!',
+        description: 'A verification link has been sent to your email address. Please click the link to confirm your account before signing in.',
+        duration: 10000, // Show for 10 seconds
       });
       navigate('/');
     } catch (error: any) {
