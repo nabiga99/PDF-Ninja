@@ -16,7 +16,7 @@ const PricingPage = () => {
 
   const config = {
     reference: new Date().getTime().toString(),
-    email: user.email,
+    email: user?.email || '', // Safely access email
     amount: 400, // Amount in cents ($4)
     currency: 'USD',
     publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
@@ -131,7 +131,9 @@ const PricingPage = () => {
                   </li>
                 ))}
               </ul>
-              <Button className="w-full mt-6" onClick={handleUpgradeClick}>Upgrade to Pro</Button>
+              {user && (
+                <Button className="w-full mt-6" onClick={handleUpgradeClick}>Upgrade to Pro</Button>
+              )}
             </CardContent>
           </Card>
         </div>
