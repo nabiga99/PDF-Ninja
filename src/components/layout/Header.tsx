@@ -1,5 +1,7 @@
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthProvider';
+import { supabase } from '@/lib/supabaseClient';
 import { Zap, FileText, Trash2, PenTool, Unlock, Shield, EyeOff, FileX, Droplets, Combine, Menu } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
@@ -20,6 +22,13 @@ const tools = [
 
 export const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -73,8 +82,19 @@ export const Header = () => {
           </div>
         </nav>
 
-        {/* Theme Toggle */}
+        {/* Auth buttons and Theme Toggle */}
         <div className="flex items-center space-x-2">
+                    {user ? (
+            <>
+              <Button variant="ghost" onClick={() => navigate('/dashboard')}>Dashboard</Button>
+              <Button variant="outline" onClick={handleSignOut}>Sign Out</Button>
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" onClick={() => navigate('/sign-in')}>Sign In</Button>
+              <Button onClick={() => navigate('/sign-up')}>Sign Up</Button>
+            </>
+          )}
           <ThemeToggle />
           
           {/* Mobile Navigation */}
@@ -89,7 +109,20 @@ export const Header = () => {
                 <Link to="/" className="text-lg font-semibold">
                   PDF<span className="text-primary">Ninja</span>
                 </Link>
-                <nav className="flex flex-col space-y-2">
+                <div className="border-t pt-4 mt-4">
+                  {user ? (
+                    <>
+                      <Link to="/dashboard" className="flex items-center space-x-3 px-3 py-3 rounded-md text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-accent">Dashboard</Link>
+                      <button onClick={handleSignOut} className="flex items-center space-x-3 px-3 py-3 rounded-md text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-accent w-full text-left">Sign Out</button>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/sign-in" className="flex items-center space-x-3 px-3 py-3 rounded-md text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-accent">Sign In</Link>
+                      <Link to="/sign-up" className="flex items-center space-x-3 px-3 py-3 rounded-md text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-accent">Sign Up</Link>
+                    </>
+                  )}
+                </div>
+                <nav className="flex flex-col space-y-2 border-t pt-4 mt-4">
                   {tools.map((tool) => (
                     <Link
                       key={tool.path}
