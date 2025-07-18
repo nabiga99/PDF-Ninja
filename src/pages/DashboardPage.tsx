@@ -72,6 +72,8 @@ const DashboardPage = () => {
             <p className="text-muted-foreground">Manage your profile and access your tools.</p>
           </div>
 
+          <SubscriptionDetails />
+
           {isProfileIncomplete && !loading && (
             <Card className="bg-yellow-50 border-yellow-200">
               <CardHeader>
