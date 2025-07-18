@@ -26,7 +26,7 @@ const USD_PRICE = 4; // $4
 async function getUserLocation(): Promise<GeolocationResponse> {
   try {
     // Using ip-api.com as it supports CORS for free
-    const response = await fetch('http://ip-api.com/json/?fields=status,message,countryCode');
+        const response = await fetch('https://ip-api.com/json/?fields=status,message,countryCode');
     if (!response.ok) {
       throw new Error('Failed to fetch location');
     }
