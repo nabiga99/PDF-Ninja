@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthProvider';
 import { supabase } from '../lib/supabaseClient';
 import { Button } from '../components/ui/button';
 import { Header } from '../components/layout/Header';
+import SubscriptionDetails from '../components/dashboard/SubscriptionDetails';
 import { Footer } from '../components/layout/Footer';
 import { Input } from '../components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';

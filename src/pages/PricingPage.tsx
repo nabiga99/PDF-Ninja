@@ -7,12 +7,36 @@ import { usePaystackPayment } from 'react-paystack';
 import { useAuth } from '../contexts/AuthProvider';
 import { supabase } from '../lib/supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useToast } from '../components/ui/use-toast';
 
 const PricingPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  useEffect(() => {
+    const checkSubscription = async () => {
+      if (user) {
+        const { data: profile, error } = await supabase
+          .from('profiles')
+          .select('subscription_status')
+          .eq('id', user.id)
+          .single();
+
+        if (error) {
+          console.error('Error fetching profile:', error);
+          return;
+        }
+
+        if (profile?.subscription_status === 'paid') {
+          navigate('/dashboard');
+        }
+      }
+    };
+
+    checkSubscription();
+  }, [user, navigate]);
 
   const config = {
     reference: new Date().getTime().toString(),
@@ -27,9 +51,15 @@ const PricingPage = () => {
   const onSuccess = async (reference: any) => {
     if (!user) return;
     try {
+      const expiryDate = new Date();
+      expiryDate.setDate(expiryDate.getDate() + 30);
+
       const { error } = await supabase
         .from('profiles')
-        .update({ subscription_status: 'paid' })
+        .update({
+          subscription_status: 'paid',
+          subscription_expires_at: expiryDate.toISOString(),
+        })
         .eq('id', user.id);
 
       if (error) throw error;
