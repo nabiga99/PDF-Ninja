@@ -16,9 +16,9 @@ const PricingPage = () => {
 
   const config = {
     reference: new Date().getTime().toString(),
-    email: user?.email || '', // Safely access email
-    amount: 400, // Amount in cents ($4)
-    currency: 'USD',
+    email: user?.email || '',
+    amount: 3000, // 30 GHS in pesewas (30 * 100)
+    currency: 'GHS',
     publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
   };
 
@@ -138,7 +138,7 @@ const PricingPage = () => {
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-bold">Pro</CardTitle>
               <CardDescription className="text-lg">For power users</CardDescription>
-              <p className="text-4xl font-extrabold mt-4">$4<span className="text-lg font-normal text-muted-foreground">/month</span></p>
+              <p className="text-4xl font-extrabold mt-4">$3<span className="text-lg font-normal text-muted-foreground">/month</span></p>
             </CardHeader>
             <CardContent className="space-y-4">
               <ul className="space-y-2">
