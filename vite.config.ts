@@ -1,7 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
+
+import sitemap from 'vite-plugin-sitemap';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -10,9 +11,24 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
+        react(),
+    sitemap({
+      hostname: 'https://pdfninja.xyz', // IMPORTANT: Replace with your actual domain
+      dynamicRoutes: [
+        '/',
+        '/compress',
+        '/extract',
+        '/delete',
+        '/esign',
+        '/unlock',
+        '/protect',
+        '/redact',
+        '/uneditable',
+        '/watermark',
+        '/merge',
+      ],
+    }),
+
   ].filter(Boolean),
   resolve: {
     alias: {

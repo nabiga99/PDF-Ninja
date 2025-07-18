@@ -1,46 +1,47 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+
+// Set to true if you are in production, false otherwise
+// This ensures scripts only run when your site is live
+const isProduction = process.env.NODE_ENV === 'production';
 
 const AnalyticsProvider = () => {
-  useEffect(() => {
-    // === Google Analytics ===
-    /*
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID';
-    document.head.appendChild(gaScript);
+  return (
+    <Helmet>
+      {isProduction && (
+        <>
+          {/* === Google Analytics === */}
+          {/* Google tag (gtag.js) */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-V35MFN8KXM"></script>
+          <script>
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-V35MFN8KXM');
+            `}
+          </script>
 
-    const gaScript2 = document.createElement('script');
-    gaScript2.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'YOUR_GA_ID');
-    `;
-    document.head.appendChild(gaScript2);
-    */
+          {/* === Google AdSense === */}
+          {/*
+          <script 
+            async 
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_CLIENT_ID" 
+            crossOrigin="anonymous">
+          </script>
+          */}
 
-    // === Google AdSense ===
-    /*
-    const adSenseScript = document.createElement('script');
-    adSenseScript.async = true;
-    adSenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_CLIENT_ID';
-    adSenseScript.crossOrigin = 'anonymous';
-    document.head.appendChild(adSenseScript);
-    */
+          {/* === Add other script tags here === */}
+        </>
+      )}
 
-    // === Google Search Console (Verification) ===
-    /*
-    const searchConsoleMeta = document.createElement('meta');
-    searchConsoleMeta.name = 'google-site-verification';
-    searchConsoleMeta.content = '<meta name="google-site-verification" content="htYpOmW69o8haliEshFBIFVY-ABCGFLZBr99MLqkpPU" />';
-    document.head.appendChild(searchConsoleMeta);
-    */
+      {/* === Google Search Console (Verification) === */}
+      {/* This can be active in both development and production */}
+      {/* 
+      <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+      */}
 
-    // === Add other scripts here ===
-
-  }, []);
-
-  return null; // This component does not render anything
+    </Helmet>
+  );
 };
 
 export { AnalyticsProvider };
