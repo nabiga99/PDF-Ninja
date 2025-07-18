@@ -8,16 +8,54 @@ import { useAuth } from '../contexts/AuthProvider';
 import { supabase } from '../lib/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../components/ui/use-toast';
+import { calculatePrice } from '../lib/pricing';
+import { useState, useEffect } from 'react';
+
+interface PriceState {
+  amount: number;
+  currency: 'GHS';
+  loading: boolean;
+  error: string | null;
+}
 
 const PricingPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [price, setPrice] = useState<PriceState>({
+    amount: 0,
+    currency: 'GHS',
+    loading: true,
+    error: null,
+  });
+
+  useEffect(() => {
+    const getPrice = async () => {
+      try {
+        const priceResult = await calculatePrice();
+        if (priceResult) {
+          setPrice({ ...priceResult, loading: false, error: null });
+        } else {
+          throw new Error('Could not calculate price');
+        }
+      } catch (err) {
+        setPrice({
+          amount: 0,
+          currency: 'GHS',
+          loading: false,
+          error: 'Failed to load price. Please try again.',
+        });
+        console.error(err);
+      }
+    };
+
+    getPrice();
+  }, []);
 
   const config = {
     reference: new Date().getTime().toString(),
     email: user?.email || '',
-    amount: 400, // Amount in kobo, pesewas, or cents. $4 = 400 cents
+    amount: price.amount, // Use the calculated price
     publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
   };
 
@@ -59,6 +97,7 @@ const PricingPage = () => {
       initializePayment({ onSuccess, onClose });
     }
   };
+
   const freeFeatures = [
     'Compress PDF',
     'Split PDF',
@@ -112,13 +151,19 @@ const PricingPage = () => {
 
           {/* Pro Plan */}
           <Card className="border-2 border-primary shadow-xl relative">
-             <div className="absolute top-0 -translate-y-1/2 w-full flex justify-center">
-                <span className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+            <div className="absolute top-0 -translate-y-1/2 w-full flex justify-center">
+              <span className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
             </div>
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-bold">Pro</CardTitle>
               <CardDescription className="text-lg">For power users</CardDescription>
-              <p className="text-4xl font-extrabold mt-4">$4<span className="text-lg font-normal text-muted-foreground">/month</span></p>
+              {price.loading ? (
+                <p>Loading price...</p>
+              ) : price.error ? (
+                <p className="text-red-500">{price.error}</p>
+              ) : (
+                <p className="text-4xl font-extrabold mt-4">{price.currency} {(price.amount / 100).toFixed(2)}<span className="text-lg font-normal text-muted-foreground">/month</span></p>
+              )}
             </CardHeader>
             <CardContent className="space-y-4">
               <ul className="space-y-2">
@@ -129,7 +174,9 @@ const PricingPage = () => {
                   </li>
                 ))}
               </ul>
-              <Button className="w-full mt-6" onClick={handleUpgradeClick}>Upgrade to Pro</Button>
+              {!price.loading && !price.error && (
+                <Button className="w-full mt-6" onClick={handleUpgradeClick}>Upgrade to Pro</Button>
+              )}
             </CardContent>
           </Card>
         </div>
