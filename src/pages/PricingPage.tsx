@@ -54,11 +54,29 @@ const PricingPage = () => {
   };
 
   const handleUpgradeClick = () => {
+    // Case 1: User is not logged in at all
     if (!user) {
-      navigate('/sign-in?redirect=/pricing');
-    } else {
-      initializePayment({ onSuccess, onClose });
+      toast({
+        title: 'Authentication Required',
+        description: 'Please sign in or create an account to upgrade.',
+        variant: 'destructive',
+      });
+      navigate('/signin');
+      return;
     }
+
+    // Case 2: User is logged in, but email is not yet available
+    if (!user.email) {
+      toast({
+        title: 'Could not initiate payment',
+        description: 'Your user information is not yet available. Please try again in a moment.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Case 3: User and email are available, proceed with payment
+    initializePayment({ onSuccess, onClose });
   };
 
   const freeFeatures = [
