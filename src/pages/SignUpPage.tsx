@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
@@ -6,12 +7,20 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useToast } from '../components/ui/use-toast';
 import { Header } from '../components/layout/Header';
+import { useAuth } from '../contexts/AuthProvider';
 import { Footer } from '../components/layout/Footer';
 import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
   const { toast } = useToast();
   const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 

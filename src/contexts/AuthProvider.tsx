@@ -7,6 +7,8 @@ export interface Profile {
   full_name: string;
   phone_number: string;
   updated_at: string;
+  subscription_status: 'free' | 'paid';
+  stripe_customer_id?: string;
 }
 
 interface AuthContextType {

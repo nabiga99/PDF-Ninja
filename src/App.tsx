@@ -21,7 +21,9 @@ import MergePage from "./pages/MergePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import DashboardPage from "./pages/DashboardPage";
+import PricingPage from "./pages/PricingPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PremiumRoute from "./components/PremiumRoute";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,14 +42,17 @@ const App = () => (
             <Route path="/extract" element={<ExtractPage />} />
             <Route path="/delete" element={<DeletePage />} />
             <Route path="/esign" element={<ESignPage />} />
-            <Route path="/unlock" element={<UnlockPage />} />
-            <Route path="/protect" element={<ProtectPage />} />
-            <Route path="/redact" element={<RedactPage />} />
-            <Route path="/uneditable" element={<UneditablePage />} />
-            <Route path="/watermark" element={<WatermarkPage />} />
-            <Route path="/merge" element={<MergePage />} />
+            <Route element={<PremiumRoute />}>
+              <Route path="/unlock" element={<UnlockPage />} />
+              <Route path="/protect" element={<ProtectPage />} />
+              <Route path="/redact" element={<RedactPage />} />
+              <Route path="/uneditable" element={<UneditablePage />} />
+              <Route path="/watermark" element={<WatermarkPage />} />
+              <Route path="/merge" element={<MergePage />} />
+            </Route>
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
             <Route path="/dashboard" element={<ProtectedRoute />}>
               <Route index element={<DashboardPage />} />
             </Route>
