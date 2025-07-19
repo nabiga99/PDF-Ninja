@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +17,12 @@ import RedactPage from "./pages/RedactPage";
 import UneditablePage from "./pages/UneditablePage";
 import WatermarkPage from "./pages/WatermarkPage";
 import MergePage from "./pages/MergePage";
+import { PdfToWord } from "./pages/conversion/PdfToWord";
+import { WordToPdf } from "./pages/conversion/WordToPdf";
+import { PdfToExcel } from "./pages/conversion/PdfToExcel";
+import { ExcelToPdf } from "./pages/conversion/ExcelToPdf";
+import { PdfToPowerPoint } from "./pages/conversion/PdfToPowerPoint";
+import { PowerPointToPdf } from "./pages/conversion/PowerPointToPdf";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -49,6 +54,12 @@ const App = () => (
               <Route path="/uneditable" element={<UneditablePage />} />
               <Route path="/watermark" element={<WatermarkPage />} />
               <Route path="/merge" element={<MergePage />} />
+              <Route path="/convert/pdf-to-word" element={<PdfToWord />} />
+              <Route path="/convert/word-to-pdf" element={<WordToPdf />} />
+              <Route path="/convert/pdf-to-excel" element={<PdfToExcel />} />
+              <Route path="/convert/excel-to-pdf" element={<ExcelToPdf />} />
+              <Route path="/convert/pdf-to-powerpoint" element={<PdfToPowerPoint />} />
+              <Route path="/convert/powerpoint-to-pdf" element={<PowerPointToPdf />} />
             </Route>
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />

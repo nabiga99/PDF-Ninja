@@ -9,6 +9,7 @@ import { useAppStore } from '../store/useAppStore';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { AlertCircle, Trash2 } from 'lucide-react';
+import { SEO } from '@/components/common/SEO';
 
 const DeletePage = () => {
   const { setCurrentTool, uploadedFiles, selectedFileId, error } = useAppStore();
@@ -20,6 +21,11 @@ const DeletePage = () => {
 
   return (
     <div className="min-h-screen bg-subtle flex flex-col">
+      <SEO 
+        title="Delete Pages from PDF"
+        description="Easily remove one or more pages from your PDF documents for free. Our online tool lets you delete unwanted pages quickly and securely in your browser."
+        keywords="delete pdf pages, remove pdf pages, pdf page remover, delete pages from pdf"
+      />
       <Header />
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8 space-y-8">

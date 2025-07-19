@@ -25,7 +25,7 @@ export const HeroSection = () => {
               Professional PDF Processing Tools
             </p>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Compress, extract text with OCR, extract pages, and delete pages from your PDFs. 
+              Compress, convert, extract pages, and delete pages from your PDFs. 
               All processing happens in your browser for maximum privacy and speed.
             </p>
           </div>
@@ -39,8 +39,8 @@ export const HeroSection = () => {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6">
-              <Link to="/ocr">
-                Try OCR Tool
+              <Link to="/sign-up">
+                Sign Up Now
               </Link>
             </Button>
           </div>
@@ -53,7 +53,7 @@ export const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-success" />
-              <span>No Registration</span>
+              <span>Premium Features</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-success" />

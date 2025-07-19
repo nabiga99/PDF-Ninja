@@ -9,6 +9,7 @@ import { useAppStore } from '../store/useAppStore';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { AlertCircle, FileText } from 'lucide-react';
+import { SEO } from '@/components/common/SEO';
 
 const ExtractPage = () => {
   const { setCurrentTool, uploadedFiles, selectedFileId, error } = useAppStore();
@@ -20,6 +21,11 @@ const ExtractPage = () => {
 
   return (
     <div className="min-h-screen bg-subtle flex flex-col">
+      <SEO 
+        title="Extract Pages from PDF"
+        description="Select and extract specific pages from your PDF documents for free. Create a new PDF with just the pages you need, right in your browser."
+        keywords="extract pdf pages, pdf page extractor, select pages from pdf, split pdf"
+      />
       <Header />
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8 space-y-8">

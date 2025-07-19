@@ -47,7 +47,7 @@ export const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 PDFNinja. Built with privacy and performance in mind.
+            © {new Date().getFullYear()} PDFNinja. Built with privacy and performance in mind.
           </p>
         </div>
       </div>

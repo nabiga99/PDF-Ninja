@@ -1,10 +1,58 @@
 
-import { Zap, FileText, Trash2, PenTool, Unlock, Shield, EyeOff, FileX, Droplets, Combine, Clock, Heart } from 'lucide-react';
+import { Zap, FileText, Trash2, PenTool, Unlock, Shield, EyeOff, FileX, Droplets, Combine, Clock, Heart, FileSpreadsheet, Presentation, File as FileIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
 
 const features = [
+  {
+    icon: FileText,
+    title: 'PDF to Word',
+    description: 'Convert your PDFs to editable Word documents (DOCX).',
+    link: '/convert/pdf-to-word',
+    color: 'text-blue-600',
+    bgColor: 'bg-blue-50'
+  },
+  {
+    icon: FileIcon,
+    title: 'Word to PDF',
+    description: 'Convert Word documents (DOCX) to professional PDFs.',
+    link: '/convert/word-to-pdf',
+    color: 'text-blue-600',
+    bgColor: 'bg-blue-50'
+  },
+  {
+    icon: FileSpreadsheet,
+    title: 'PDF to Excel',
+    description: 'Extract data from your PDFs into Excel spreadsheets (XLSX).',
+    link: '/convert/pdf-to-excel',
+    color: 'text-green-600',
+    bgColor: 'bg-green-50'
+  },
+  {
+    icon: FileIcon,
+    title: 'Excel to PDF',
+    description: 'Turn your Excel spreadsheets (XLSX) into shareable PDFs.',
+    link: '/convert/excel-to-pdf',
+    color: 'text-green-600',
+    bgColor: 'bg-green-50'
+  },
+  {
+    icon: Presentation,
+    title: 'PDF to PowerPoint',
+    description: 'Transform your PDFs into editable PowerPoint presentations (PPTX).',
+    link: '/convert/pdf-to-powerpoint',
+    color: 'text-orange-600',
+    bgColor: 'bg-orange-50'
+  },
+  {
+    icon: FileIcon,
+    title: 'PowerPoint to PDF',
+    description: 'Convert PowerPoint presentations (PPTX) to high-quality PDFs.',
+    link: '/convert/powerpoint-to-pdf',
+    color: 'text-orange-600',
+    bgColor: 'bg-orange-50'
+  },
   {
     icon: Zap,
     title: 'Compress PDFs',

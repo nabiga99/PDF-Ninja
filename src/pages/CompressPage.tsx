@@ -10,6 +10,7 @@ import { useAppStore } from '../store/useAppStore';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { AlertCircle, Zap } from 'lucide-react';
+import { SEO } from '@/components/common/SEO';
 
 const CompressPage = () => {
   const { setCurrentTool, uploadedFiles, selectedFileId, error } = useAppStore();
@@ -22,6 +23,11 @@ const CompressPage = () => {
 
   return (
     <div className="min-h-screen bg-subtle flex flex-col">
+      <SEO 
+        title="Compress PDF - Reduce PDF File Size"
+        description="Easily compress your PDF files to reduce their size while maintaining quality. Our free online tool makes it simple to shrink large PDFs for easier sharing and storage."
+        keywords="compress pdf, pdf compressor, reduce pdf size, shrink pdf, optimize pdf"
+      />
       <Header />
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8 space-y-8">
