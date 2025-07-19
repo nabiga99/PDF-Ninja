@@ -1,9 +1,11 @@
+import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthProvider';
 import { supabase } from '@/lib/supabaseClient';
 import { Zap, FileText, Trash2, PenTool, Unlock, Shield, EyeOff, FileX, Droplets, Combine, Menu, FileSpreadsheet, Presentation, File as FileIcon } from 'lucide-react';
 import { Button } from '../ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { ThemeToggle } from '../theme/ThemeToggle';
 
 const organizeTools = [
@@ -57,32 +59,38 @@ const NavMenu = ({ title, items, isActive }) => (
   </div>
 );
 
-const MobileNavGroup = ({ title, items, isActive }) => (
-  <div>
-    <h3 className="px-3 py-2 text-sm font-semibold text-muted-foreground">{title}</h3>
-    <div className="flex flex-col space-y-1">
-      {items.map((tool) => (
-        <Link
-          key={tool.path}
-          to={tool.path}
-          className={`flex items-center space-x-3 px-3 py-3 rounded-md text-sm font-medium transition-colors ${
-            isActive(tool.path)
-              ? 'bg-primary text-primary-foreground'
-              : 'text-muted-foreground hover:text-foreground hover:bg-accent'
-          }`}
-        >
-          <tool.icon className="h-5 w-5" />
-          <span>{tool.name}</span>
-        </Link>
-      ))}
-    </div>
-  </div>
+const MobileNavAccordion = ({ title, items, isActive, setOpen }) => (
+  <AccordionItem value={title}>
+    <AccordionTrigger className="px-3 text-base font-semibold text-muted-foreground hover:no-underline">
+      {title}
+    </AccordionTrigger>
+    <AccordionContent>
+      <div className="flex flex-col space-y-1 pl-4">
+        {items.map((tool) => (
+          <Link
+            key={tool.path}
+            to={tool.path}
+            onClick={() => setOpen(false)}
+            className={`flex items-center space-x-3 px-3 py-3 rounded-md text-sm font-medium transition-colors ${
+              isActive(tool.path)
+                ? 'bg-primary text-primary-foreground'
+                : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+            }`}
+          >
+            <tool.icon className="h-5 w-5" />
+            <span>{tool.name}</span>
+          </Link>
+        ))}
+      </div>
+    </AccordionContent>
+  </AccordionItem>
 );
 
 export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -125,14 +133,20 @@ export const Header = () => {
           <ThemeToggle />
           
           {/* Mobile Navigation */}
-          <Sheet>
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="lg:hidden">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
-              <div className="flex flex-col space-y-4 mt-8">
+                        <SheetContent side="right" className="w-80">
+              <SheetHeader>
+                <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  A list of navigation links and tools available for PDF Ninja.
+                </SheetDescription>
+              </SheetHeader>
+              <div className="flex flex-col space-y-4 mt-4">
                 <Link to="/" className="text-lg font-semibold">
                   PDF<span className="text-primary">Ninja</span>
                 </Link>
@@ -149,11 +163,13 @@ export const Header = () => {
                     </>
                   )}
                 </div>
-                <nav className="flex flex-col space-y-2 border-t pt-4 mt-4">
-                  <MobileNavGroup title="Organize" items={organizeTools} isActive={isActive} />
-                  <MobileNavGroup title="Security" items={securityTools} isActive={isActive} />
-                  <MobileNavGroup title="Convert" items={conversionTools} isActive={isActive} />
-                </nav>
+                                <div className="border-t pt-4 mt-4">
+                  <Accordion type="multiple" className="w-full">
+                    <MobileNavAccordion title="Organize" items={organizeTools} isActive={isActive} setOpen={setMobileMenuOpen} />
+                    <MobileNavAccordion title="Security" items={securityTools} isActive={isActive} setOpen={setMobileMenuOpen} />
+                    <MobileNavAccordion title="Convert" items={conversionTools} isActive={isActive} setOpen={setMobileMenuOpen} />
+                  </Accordion>
+                </div>
               </div>
             </SheetContent>
           </Sheet>

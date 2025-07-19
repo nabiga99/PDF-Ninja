@@ -70,10 +70,10 @@ const features = [
     bgColor: 'bg-green-50'
   },
   {
-    icon: FileText,
-    title: 'Extract Pages',
-    description: 'Select and extract specific pages or ranges. Export as single or separate files.',
-    link: '/extract',
+    icon: Combine,
+    title: 'Convert PDF',
+    description: 'Transform your PDFs into Word, Excel, and PowerPoint files, and vice-versa.',
+    link: '/convert/pdf-to-word',
     color: 'text-purple-600',
     bgColor: 'bg-purple-50'
   },

@@ -46,14 +46,18 @@ const App = () => (
             <Route path="/compress" element={<CompressPage />} />
             <Route path="/extract" element={<ExtractPage />} />
             <Route path="/delete" element={<DeletePage />} />
+            <Route path="/merge" element={<MergePage />} />
+
+            {/* Security Tools - Free */}
             <Route path="/esign" element={<ESignPage />} />
+            <Route path="/unlock" element={<UnlockPage />} />
+            <Route path="/protect" element={<ProtectPage />} />
+            <Route path="/redact" element={<RedactPage />} />
+            <Route path="/uneditable" element={<UneditablePage />} />
+            <Route path="/watermark" element={<WatermarkPage />} />
+
+            {/* Conversion Tools - Premium */}
             <Route element={<PremiumRoute />}>
-              <Route path="/unlock" element={<UnlockPage />} />
-              <Route path="/protect" element={<ProtectPage />} />
-              <Route path="/redact" element={<RedactPage />} />
-              <Route path="/uneditable" element={<UneditablePage />} />
-              <Route path="/watermark" element={<WatermarkPage />} />
-              <Route path="/merge" element={<MergePage />} />
               <Route path="/convert/pdf-to-word" element={<PdfToWord />} />
               <Route path="/convert/word-to-pdf" element={<WordToPdf />} />
               <Route path="/convert/pdf-to-excel" element={<PdfToExcel />} />
