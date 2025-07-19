@@ -1,37 +1,38 @@
 
 # PDF Ninja - Complete PDF Processing Suite
 
-A comprehensive web application for all your PDF processing needs, featuring 10 powerful tools including compression, page management, digital signatures, security features, and more.
+A comprehensive web application for all your PDF processing needs, featuring a powerful suite of tools for compression, conversion, page management, digital signatures, and security. Built with a focus on privacy, performance, and user experience.
 
 ## 🚀 Features
 
-### 📄 PDF Compression
-- **Smart Compression**: Reduce PDF file sizes using advanced algorithms
-- **Quality Preservation**: Maintain document quality while optimizing file size
-- **Multiple Levels**: Light, medium, and heavy compression options
-- **Real-time Progress**: Monitor compression progress with visual indicators
+### 📄 PDF Compression (Hybrid Model)
+- **Best Quality (Premium)**: Server-side compression powered by the CloudConvert API for maximum file size reduction while preserving quality.
+- **Privacy First (Free)**: Secure, client-side compression using `pdf-lib` that processes files directly in your browser. No data ever leaves your computer.
+- **User Choice**: Easily switch between compression methods based on your needs.
 
-### ✂️ Page Management
-- **Page Extraction**: Select and extract specific pages from PDF documents
-- **Page Deletion**: Remove unwanted pages from your PDFs
-- **Visual Preview**: See page thumbnails before processing
-- **Range Selection**: Support for individual pages or page ranges
+### 🔄 Document Conversion (Premium)
+- **PDF to Office**: Convert PDFs to editable Word (.docx), Excel (.xlsx), and PowerPoint (.pptx) files.
+- **Office to PDF**: Convert Word, Excel, and PowerPoint documents into professional, standardized PDFs.
+- **Client-Side Processing**: All conversions are handled securely in the browser.
 
-### ✍️ Digital Signatures (eSign)
-- **Electronic Signatures**: Create legally valid digital signatures
-- **Text Signatures**: Type your signature for quick signing
-- **Hand-drawn Signatures**: Draw your signature with mouse or touch
-- **Professional Results**: Add signatures to any PDF document
+### ✂️ Page Management (Free)
+- **Merge PDFs**: Combine multiple PDF files into one unified document.
+- **Page Extraction**: Select and extract specific pages from PDF documents.
+- **Page Deletion**: Remove unwanted pages from your PDFs.
+- **Visual Preview**: See page thumbnails before processing.
 
-### 🔐 Security Features
-- **Unlock PDF**: Remove passwords, encryption, and permissions from protected PDFs
-- **Protect PDF**: Add password protection and encryption to secure documents
-- **Redact PDF**: Permanently remove sensitive information (Coming Soon)
-- **Make Uneditable**: Convert PDFs to read-only format (Coming Soon)
+### ✍️ Digital Signatures (eSign) (Free)
+- **Electronic Signatures**: Create and apply digital signatures to your documents.
+- **Multiple Methods**: Sign by typing your name, drawing with a mouse/touchscreen, or uploading an image of your signature.
+
+### 🔐 Security Features (Free)
+- **Unlock PDF**: Remove passwords and encryption from protected PDFs.
+- **Protect PDF**: Add password protection to secure your documents.
+- **Watermark PDF**: Add custom text or image watermarks.
+- **Redact & Uneditable**: More security tools coming soon.
 
 ### 🎨 Document Enhancement
-- **Add Watermark**: Add custom watermarks with adjustable opacity and positioning (Coming Soon)
-- **Merge PDFs**: Combine multiple PDF files into one unified document (Coming Soon)
+
 
 ### 🎯 User Experience
 - **Drag & Drop Upload**: Intuitive file upload with visual feedback
@@ -55,9 +56,11 @@ A comprehensive web application for all your PDF processing needs, featuring 10 
 - **Recharts** - Responsive chart library for data visualization
 
 ### PDF Processing
-- **pdf-lib** - Create and modify PDF documents
-- **Canvas API** - For signature drawing and image processing
-- **File API** - Handle file uploads and downloads
+- **pdf-lib** - Create and modify PDF documents on the client-side.
+- **PDF.js** - Parse and render PDF documents in the browser.
+
+### External Services
+- **CloudConvert API** - Powers the premium server-side PDF compression for superior quality.
 
 ### State Management & Utilities
 - **Zustand** - Lightweight state management
